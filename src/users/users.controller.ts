@@ -8,16 +8,20 @@ import {
   Delete,
   HttpException,
   HttpStatus,
+  UseGuards,
+  Request,
 } from '@nestjs/common';
 import { User } from './user';
 import { UsersService } from './user.service';
+import { JwtAuthGuard } from '../auth/jwt-auth.guard';
 
+@UseGuards(JwtAuthGuard)
 @Controller('users')
 export class UsersController {
   constructor(private userService: UsersService) {}
 
   @Get()
-  async getAll(): Promise<User[]> {
+  async getAll(@Request() req): Promise<User[]> {
     return await this.userService.getAll();
   }
 
