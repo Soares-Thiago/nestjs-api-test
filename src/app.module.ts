@@ -1,10 +1,8 @@
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
-import { AppService } from './app.service';
 import { MongooseModule } from '@nestjs/mongoose';
-import { UsersController } from './users/users.controller';
-import { UsersService } from './users/user.service';
 import { UsersModule } from './users/user.module';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -12,8 +10,9 @@ import { UsersModule } from './users/user.module';
       'mongodb+srv://devps:devps@sandbox.d8awb.mongodb.net/nestTest?retryWrites=true&w=majority',
     ),
     UsersModule,
+    AuthModule,
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [],
 })
 export class AppModule {}

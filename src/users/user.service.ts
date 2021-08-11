@@ -13,6 +13,10 @@ export class UsersService {
     return await this.userModel.find().select('-password').exec();
   }
 
+  async findOne(email: string) {
+    return await this.userModel.findOne({ email }).exec();
+  }
+
   async getById(id: string) {
     return await this.userModel.findById(id).select('-password').exec();
   }
